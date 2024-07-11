@@ -8,4 +8,4 @@ van.matta@duocuc.cl
 
 TOMAS GABRIEL WERES TAPIA(fue informada su salida en un formulario de cambio de grupo 12/4/2024)
 
-https://github.com/PipeVega/paginawebdjango
+https://github.com/PipeVega/PaginaWEB
