@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+  <div>
+    <h1>Mis Datos</h1>
+  </div>
+  <div class="container">
+    <div class="col-9" style="margin: auto;">
+      <form id="form" method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <table class="table tableinfo" style="border-radius: 10px; overflow: hidden; margin: auto;">
+          <tr class="row">
+            <td class="col text-wrap overflow-hidden" style="border-bottom: none; vertical-align: top; text-align: left;">
+              <div style="margin: 20px 0px 0px 20px">
+                {{ form_usuario|as_bootstrap_form:'help_text_visible=False' }}
+              
+    
+                {{ form_perfil|as_bootstrap_form }}
+              </div>
+            </td>
+            <td class="col-4" style="vertical-align: top;">
+              <div class="row mb-2" style="margin: 20px 0px 0px 0px">
+                <div class="mb-2 text-center">
+                    {% if form_perfil.imagen.value %}
+                      <img id="cuadro-imagen" src="/media/{{ form_perfil.imagen.value }}" class="img-thumbnail me-3"
+                      style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
+                    {% else %}
+                      <img id="cuadro-imagen" src="{% static 'core\img\images (1).png' %}" class="img-thumbnail me-3"
+                      style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
+                    {% endif %}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+    
+        <div class="mt-2 mb-3 text-center">
+          <button type="submit" class="btn btn-success btn-lg btn-design1"> Actualizar mis datos </button>
+          <button class="btn btn-primary btn-lg btn-design1" onclick="event.preventDefault(); document.getElementById('id_imagen').click();"> Seleccionar imagen </button>  
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'core/js/misdatos.js' %}"></script>
+{% endblock script %}

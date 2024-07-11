@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+  <div class="container">
+    <section class="carruselimg">
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'core/img/1.png' %}" class="d-block w-100"/>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'core/img/2.png' %}" class="d-block w-100"/>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        {% if productos %}
+          {% for producto in productos %}
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <a href="{% url 'ficha' producto.id %}">
+                <img class="card-img-top" src="/media/{{ producto.imagen }}" alt="{{ producto.nombre }}">
+              </a>
+              <div class="card-body">
+                <h4>{{ producto.nombre }}</h4>
+                <small class="text-muted">{{ producto.html_estado|safe }}</small>
+                <p class="card-text">{{ producto.descripcion }}</p>
+                <small class="text-muted">{{ producto.html_precio|safe }}</small>
+                <div class="justify-content-between align-items-center card-footer">
+                  <small class="text-muted">{{ producto.html_stock|safe }}</small>             
+                  <div class="btn-group">
+                    <a href="{% url 'ficha' producto.id %}" class="btn btn-outline-secondary">Ver Detalles</a>
+                    <a href="{% url 'agregar_producto_al_carrito' producto.id %}" class="btn btn-outline-secondary">Añadir al Carrito</a>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <p>No se encontraron productos.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

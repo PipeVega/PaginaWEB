@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+<p></p>
+  <h2>Administar Tienda</h2>
+
+  <ul>
+    <li><a href="{% url 'usuarios' 'crear' '0' %}" class="btn btn-secondary">Mantenedor de Usuarios</a></li>
+    <li><a href="{% url 'productos' 'crear' 0 %}" class="btn btn-secondary ">Mantenedor de productos</a></li>
+    <li><a href="{% url 'ventas' %}" class="btn btn-secondary">Historial de ventas</a></li>
+    <li><a href="{% url 'bodega' %}" class="btn btn-secondary btn-design1">Mantenedor de bodega</a></li>
+
+  </ul>
+{% endblock %}

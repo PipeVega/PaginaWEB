@@ -1,0 +1,48 @@
+/* 
+DESCOMENTA LAS SIGUIENTES CLASES SI QUIERES VER 
+LA ESTRUCTURA DE LA PAGINA BASE DE DJANGO 
+*/
+
+/*
+.pagelayout-1, 
+.pagelayout-2,
+.pagelayout-3,
+.pagelayout-4,
+.pagelayout-5,
+.pagelayout-6,
+.pagelayout-7,
+.pagelayout-8,
+.pagelayout-9 
+{
+  position: relative;
+  border: 6px solid red;
+  padding: 20px;
+}
+
+.pagelayout-1::before,
+.pagelayout-2::before,
+.pagelayout-3::before,
+.pagelayout-4::before,
+.pagelayout-5:before,
+.pagelayout-6::before,
+.pagelayout-8::before,
+.pagelayout-9::before 
+{
+  position: absolute;
+  border: 3px solid red;
+  top: -15px;
+  left: 10px;
+  background-color: yellow;
+  color: black;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.pagelayout-1::before { content: "Página base - menú superior compartido por todas las páginas"; }
+.pagelayout-2::before { content: "Página base - bloque para poner contenido de cada página"; }
+.pagelayout-3::before { content: "Página base - bloque de footer compartido por todas las páginas"; }
+.pagelayout-4::before { content: "Página base (invisible) - área de scripts compartidos por todas las páginas"; }
+.pagelayout-5::before { content: "Página base (invisible) - área de scripts personalizados para cada pagina"; }
+.pagelayout-6::before { content: "Página base (invisible) - script para mostrar mensajes emergentes en SweetAlert2"; }
+*/

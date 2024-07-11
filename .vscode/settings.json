@@ -1,0 +1,51 @@
+{
+    "editor.minimap.enabled": false,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "files.autoSave": "afterDelay",
+    "python.terminal.activateEnvironment": false,
+    "python.defaultInterpreterPath": ".\\.venv\\Scripts\\python.exe",
+    "editor.tabSize": 2,
+    "editor.mouseWheelZoom": true,
+    "gitlens.currentLine.enabled": false,
+    "editor.comments.visible": false,
+    "favorites.resources": [
+        {
+            "filePath": "core/views.py",
+            "group": "Default"
+        },
+        {
+            "filePath": "core/urls.py",
+            "group": "Default"
+        },
+        {
+            "filePath": "core/forms.py",
+            "group": "Default"
+        },
+        {
+            "filePath": "core/templatetags/custom_filters.py",
+            "group": "Default"
+        },
+        {
+            "filePath": "core/context_processors.py",
+            "group": "Default"
+        },
+        {
+            "filePath": "core/tools.py",
+            "group": "Default"
+        },
+        {
+            "filePath": "tienda/settings.py",
+            "group": "Default"
+        },
+        {
+            "filePath": "core/templates/core/base.html",
+            "group": "Default"
+        },
+        {
+            "filePath": "core/models.py",
+            "group": "Default"
+        }
+    ],
+    "favorites.sortOrder": "MANUAL",
+    "liveServer.settings.port": 5507,
+}

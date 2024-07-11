@@ -1,0 +1,129 @@
+{% extends 'core/base.html' %} {% load static %} {% load custom_filters %}
+{% block stylesheet %}
+<style>
+  .table.table-striped.tableinfo td,
+  .table.table-striped.tableinfo th {
+  }
+</style>
+{% endblock stylesheet %} 
+{% block content %}
+<div>
+  <h1>Mantenedor de Bodega</h1>
+</div>
+
+<div class="container">
+  <div class="col-10" style="margin: auto">
+    <form id="form" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table
+        class="table tableinfo"
+        style="border-radius: 10px; overflow: hidden; width: 90%; margin: auto"
+      >
+        <tr class="row">
+          <td
+            class="col text-wrap overflow-hidden"
+            style="border-bottom: none; vertical-align: top; text-align: left"
+          >
+            <div style="margin: 10px 0px 0px 20px">
+              <div class="row mb-3">{{ form|as_bootstrap_form }}</div>
+            </div>
+          </td>
+          <td class="col-4" style="vertical-align: top">
+            <div class="row mb-2" style="margin: 20px 0px 0px 0px">
+              <div class="mb-2 text-center">
+                {% if form.imagen.value %}
+                <img
+                  id="cuadro-imagen"
+                  src="/media/{{ form.imagen.value }}"
+                  style="width: 150px; height: auto; object-fit: cover"
+                />
+                {% else %}
+                <img
+                  id="cuadro-imagen"
+                  src="{% static 'core\img\user-icon-on-transparent-background-free-png.webp' %}"
+                  style="width: 150px; height: auto; object-fit: cover"
+                />
+                {% endif %}
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div class="mt-2 mb-3 text-center">
+        <button type="submit" class="btn btn-primary btn-lg btn-design1">
+          Agregar
+        </button>
+        <button type="reset" class="btn btn-warning btn-lg btn-design1" onclick="document.getElementById('cuadro-imagen').src='{% static 'core\img\user-icon-on-transparent-background-free-png.webp' %}';"> Nuevo </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if productos %}
+<div class="container">
+  <h1>Lista de Productos</h1>
+
+  <div class="container mt-5">
+    <table
+      id="tabla-principal"
+      class="table table-hover"
+      style="border-radius: 10px; overflow: hidden"
+    >
+      <thead>
+        <tr>
+          <th style="text-align: center">ID</th>
+          <th style="text-align: center">Categoría</th>
+          <th style="text-align: center">Producto</th>
+          <th style="text-align: center">Estado</th>
+          <th style="text-align: center">Imagen</th>
+          <th style="text-align: center">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for producto in productos %}
+        <tr>
+          <td>{{ producto.bodega_id }}</td>
+          <td>{{ producto.nombre_categoria }}</td>
+          <td>{{ producto.nombre_producto }}</td>
+          <td>{{ producto.estado }}</td>
+          <td style="text-align: center">
+            <img
+              src="/media/{{ producto.imagen }}"
+              class="img-thumbnail btn-design2"
+              style="max-height: 75px"
+              \
+            />
+          </td>
+          <td style="text-align: center">
+            {% if producto.estado == 'En bodega' %}
+            <a
+              href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}"
+              class="btn btn-danger btn-sm btn-design1"
+              style="font-style: normal"
+            >
+              Eliminar
+            </a>
+            {% else %}
+            <a
+              href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}"
+              class="btn btn-secondary btn-sm btn-design1 disabled"
+              style="font-style: normal"
+            >
+              Eliminar
+            </a>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %} {% endblock content %} {% block script %}
+  <input
+    type="hidden"
+    id="url_obtener_productos"
+    value="{% url 'obtener_productos' %}"
+  />
+  <script src="{% static 'core/js/bodega.js' %}"></script>
+  {% endblock script %}
+</div>

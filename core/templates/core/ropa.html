@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+  <br/>
+  <h1 style="text-align: center">¡Concursa por una prenda de vestir!</h1>
+  <h2 style="text-align: center; color: rgb(0, 0, 0);">
+    Por compras superiores a $20.000 en productos ya estás participando!
+  </h2>
+
+  <div class="album">
+    <div class="container-fluid">
+      <div style="justify-content: center;" class="row align-items-stretch card-wrapper">
+        <div class="col-8 card-columns-wrapper">
+          <div class="row row-cols-1 row-cols-md-3 g-4" id="container">             
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block script %}
+  <script src="{% static 'core/js/ropa.js' %}"></script>
+{% endblock script %}

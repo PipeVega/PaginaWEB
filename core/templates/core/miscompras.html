@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block stylesheet %}
+  <style>
+    .table.table-striped.tableinfo td,
+    .table.table-striped.tableinfo th {
+      text-align: unset;
+    }
+  </style>
+{% endblock stylesheet %}
+
+{% block content %}
+
+  <!-- Tabla de Ventas -->
+  <h1>Historial de compras</h1>
+  <div class="container mt-5">
+    <table class="table table-striped mt-5 tableinfo">
+      <thead>
+        <tr>
+          <th scope="col"> Nro Boleta </th>
+          <th scope="col"> Venta </th>
+          <th scope="col"> Despacho </th>
+          <th scope="col"> Entrega </th>
+          <th scope="col"> Monto Total </th>
+          <th scope="col"> Estado actual </th>
+          <th scope="col"> Opciones </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for boleta in historial %}
+          {% if boleta.estado == 'Anulado' %}
+            <tr class="letra-boleta-anulada"> 
+          {% else %}
+            <tr>
+          {% endif %}
+            <td> {{ boleta.nro_boleta }} </td>
+            <td> {{ boleta.fecha_venta|formatear_fecha }} </td>
+            <td> {{ boleta.fecha_despacho|formatear_fecha }} </td>
+            <td> {{ boleta.fecha_entrega|formatear_fecha }} </td>
+            <td> {{ boleta.total_a_pagar|formatear_dinero }} </td>
+            <td> {{ boleta.estado }} </td>
+            <td>
+                <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary btn-design3" style="font-style: normal;">Detalle</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>       
+    </table>
+
+{% endblock content %}

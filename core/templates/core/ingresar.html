@@ -1,0 +1,35 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+    <div class="container">
+        <h1>Ingreso</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="login-container block">
+                    <h2 class="titledesc">Iniciar Sesión</h2>
+                    <form id="form" method="POST" >
+
+                      {% csrf_token %} 
+                      
+                      <!-- Botones -->
+                      {{ form|as_bootstrap_form }}
+                      
+                      <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-success btn-design1"> Ingresar </button>
+                      </div>
+                      
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'common/combobox_usuarios.html' %}
+
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'core/js/ingresar.js' %}"></script>
+{% endblock script %}

@@ -1,0 +1,114 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block stylesheet %}
+    <style>
+        .table.table-striped.tableinfo td,
+        .table.table-striped.tableinfo th {
+            text-align: left;
+        }
+    </style>
+{% endblock stylesheet %}
+
+{% block content %}
+    <div>
+        <h1>Mantenedor de Usuarios</h1>
+    </div>
+
+    <div class="container">
+        <div class="col-10" style="margin: auto;">
+            <form id="form" method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <table class="table  tableinfo" style="border-radius: 10px; overflow: hidden; margin: auto;">
+                    <tr class="row">
+                        <td class="col text-wrap overflow-hidden" style="border-bottom: none; vertical-align: top; text-align: left;">
+                            <div style="margin: 10px 0px 0px 20px">
+                                <div class="row mb-3">
+                                    {{ form_usuario|as_bootstrap_form }}
+
+                                    {{ form_perfil|as_bootstrap_form }}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-4" style="vertical-align: top;">
+                            <div class="row mb-2" style="margin: 20px 0px 0px 0px">
+                                <div class="mb-2 text-center">
+                                    {% if form_perfil.imagen.value %}
+                                        <img id="cuadro-imagen" src="/media/{{ form_perfil.imagen.value }}" class="img-thumbnail me-3"
+                                        style="width: 250px; height: auto; object-fit: cover;">
+                                    {% else %}
+                                        <img id="cuadro-imagen" src="{% static 'core\img\user-icon-on-transparent-background-free-png.webp' %}" class="img-thumbnail me-3"
+                                        style="width: 250px; height: auto; object-fit: cover;">
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="mt-2 mb-3 text-center">
+                    <button type="submit" class="btn btn-success btn-lg btn-design1"> Guardar </button>
+                    <a href="{% url 'usuarios' 'crear' '0' %}" class="btn btn-warning btn-lg btn-design1 ms-3" style="font-style: normal;"> Nuevo </a>
+                    <button onclick="event.preventDefault(); document.getElementById('id_imagen').click();" class="btn btn-primary btn-lg btn-design1 ms-3"> Seleccionar Imagen </button>
+                    {% if form_usuario.instance.id %}
+                        <a class="btn btn-danger btn-lg btn-design1 ms-3" href="{% url 'usuarios' 'eliminar' form_usuario.instance.id %}" style="font-style: normal;"> Eliminar </a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <table class="table table-striped mt-5 tableinfo" style="justify-content: left;">
+            <thead>
+                <tr>
+                    <th scope="col"> ID </th>
+                    <th scope="col"> Cuenta </th>
+                    <th scope="col"> Tipo usuario </th>
+                    <th scope="col"> Nombre </th>
+                    <th scope="col"> Apellidos </th>
+                    <th scope="col"> Correo </th>
+                    <th scope="col"> RUT </th>
+                    <th scope="col"> Subscrito </th>
+                    <th scope="col"> Imagen </th>
+                    <th scope="col"> Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for usuario in usuarios %}
+                        <td> {{ usuario.id }} </td>
+                        <td> {{ usuario.username }} </td>
+                        <td> {{ usuario.perfil.tipo_usuario }} </td>
+                        <td> {{ usuario.first_name }} </td>
+                        <td> {{ usuario.last_name }} </td>
+                        <td> {{ usuario.email }} </td>
+                        <td> {{ usuario.perfil.rut }} </td>
+                        <td> {% if usuario.perfil.subscrito %} Sí {% else %} No {% endif %} </td>
+                        <td>
+                            <img src="/media/{{ usuario.perfil.imagen }}" class="img-thumbnail btn-design2" style="max-height: 75px;">
+                        </td>
+                        <td>
+                        <div class="btn-group">
+                            <a href="{% url 'usuarios' 'actualizar' usuario.id %}" style="margin-right: 5px;" class="btn btn-success btn-sm btn-design1"> Editar </a>
+                            <a href="{% url 'usuarios' 'eliminar' usuario.id %}" style="margin-right: 5px;" class="btn btn-danger btn-sm btn-design1"> Eliminar </a>
+                            <form action="{% url 'cambiar_password' %}" method="post" id="form_{{ usuario.username }}">
+                                {% csrf_token %}
+                                <input type="hidden" id="username" name="username" value="{{ usuario.username }}">
+                                <button class="btn btn-info btn-sm btn-design1" id="id_generar_password" onclick="document.getElementById('form_{{ usuario.username }}').submit();"> Contraseña </button>
+                            </form>
+                        </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'core/js/usuarios.js' %}"></script>
+{% endblock script %}

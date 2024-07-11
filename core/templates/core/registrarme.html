@@ -1,0 +1,53 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+  <div>
+    <div class="col"></div>
+    <section>
+     <h1>Registro de cliente</h1>
+     <br>
+      <form id="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+           <div class="container-fluid col-8" >
+                <div class="row">
+
+                   <div class="col">
+                       <div class="mb-3 fw-bold">
+                        {{ form_usuario|as_bootstrap_form:'help_text_visible=False' }}
+    
+                        {{ form_perfil|as_bootstrap_form }}                      
+                                          
+                       </div>
+                       <button type="submit" class="btn btn-success btn-lg "> Registrarme </button>
+                       <button type="reset" id="limpiar_formulario" class="btn btn-success btn-lg "> Limpiar </button>
+                       <button class="btn btn-success btn-lg " onclick="event.preventDefault(); document.getElementById('id_imagen').click();"> Seleccionar imagen </button>  
+                       <button id="crear_usuario_prueba" class="btn btn-success btn-lg "> Crear usuario de prueba </button>
+                   </div>
+                
+                   <div class="col-4">
+                       <table>
+                           <tr>
+                               <td>
+                                {% if form_perfil.imagen.value %}
+                                <img id="cuadro-imagen" src="/media/{{ form_perfil.imagen.value }}" class=""
+                                style="width: 250px; height: auto; object-fit: cover;">
+                              {% else %}
+                                <img id="cuadro-imagen" src="{% static 'core\img\user-icon-on-transparent-background-free-png.webp' %}" class=""
+                                style="width: 250px; height: auto; object-fit: cover;">
+                              {% endif %}
+                               </td>
+                           </tr>
+                       </table>
+                   </div>        
+               </div>
+           </div>      
+       </form>
+     </section>
+    </div>
+{% endblock %}
+
+{% block script %}
+  <script src="{% static 'core/js/registrarme.js' %}"></script>
+{% endblock script %}

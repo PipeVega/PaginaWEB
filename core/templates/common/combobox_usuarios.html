@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+
+  <div class="col-5 mt-4">
+
+    <select id="user-select" class="form-select form-control-registro">
+      <option value="">Selecciona un usuario de prueba</option>
+      {% for perfil in perfiles %}
+        <option value="{{ perfil.usuario.username }}">
+          {{ perfil.usuario.first_name }} {{ perfil.usuario.last_name }}
+          (
+            {{ perfil.tipo_usuario }}
+            {% if perfil.tipo_usuario == 'Cliente' %}
+              {% if perfil.subscrito %}
+                PREMIUM
+              {% endif %}
+            {% endif %}
+          )
+        </option>
+      {% endfor %}
+    </select>
+  
+    <br>
+
+    <small style="color: green;" class="form-text">
+      <span class="fw-bold">NOTA:</span>
+      Si actualizaste los datos de algún usuario o creaste uno nuevo, usando 
+      la página <span class="fw-bold">"Administración de usuarios"</span>, 
+      el sistema por seguridad actualizará la contraseña del usuario por una nueva al
+      azar. Pero para efectos de nuestras pruebas, la contraseña será actualizada por:
+      <span class="fw-bold">Duoc@123</span>. Si te aparece el mensaje 
+      "La cuenta o la password no son correctos" al usar el combobox de arriba, 
+      entonces prueba con la contraseña <span class="fw-bold">Duoc@123</span>.
+    </small>
+
+  </div>
+
+</div>

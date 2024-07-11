@@ -1,0 +1,113 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block stylesheet %}
+<style>
+  .table.table-striped.tableinfo td,
+  .table.table-striped.tableinfo th {
+      text-align: unset;
+  }
+</style>
+{% endblock stylesheet %}
+
+{% block content %}
+  {% if boleta %}
+    <div class="col">
+      <h1>Detalle de boleta</h1>
+    </div>
+
+    <div class="container mt-4">
+      <div class="row">
+        <h2 style=" text-align: center;">
+          Boleta N° {{ boleta.nro_boleta }} de {{ boleta.cliente.usuario.first_name }} {{ boleta.cliente.usuario.last_name }}
+        </h2>
+      </div>
+
+      <div class="container mt-5">
+        <table class="table  table-striped mt-5 tableinfo" style="width: 90%; margin: auto;">
+          <thead>
+            <tr>
+              <th scope="col">Categoría</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Producto</th>
+              <th scope="col">Precio</th>
+              <th scope="col">% Subscriptor</th>
+              <th scope="col">% Oferta</th>
+              <th scope="col">% Descuento Total</th>
+              <th scope="col">Descuento</th>
+              <th scope="col">Precio a Pagar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in detalle_boleta %}
+            <tr>
+              <td>{{ item.bodega.producto.categoria.nombre }}</td>
+              <td><img src="{{ item.bodega.producto.imagen.url }}" class="img-thumbnail btn-design2" style="max-height: 75px;"/></td>
+              <td>{{ item.bodega.producto.nombre }}</td>
+              <td>{{ item.precio|formatear_dinero }}</td>
+              <td>{{ item.descuento_subscriptor|formatear_porcentaje }}</td>
+              <td>{{ item.descuento_oferta|formatear_porcentaje }}</td>
+              <td>{{ item.descuento_total|formatear_porcentaje }}</td>
+              <td>{{ item.descuentos|formatear_dinero }}</td>
+              <td>{{ item.precio_a_pagar|formatear_dinero }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="container mt-5">
+        <table class="table  table-striped mt-5 tableinfo" style="width: 70%; margin: auto;">
+          <tr>
+            <td>
+              <div class="col titledesc2">
+                <table class="table  tableinfo" style="margin-top: 25px;">
+                  <tr>
+                    <td style="text-align: center; padding-right: 20px;">
+                      <img src="{% static 'core\img\istockphoto-1184670036-612x612.jpg' %}" alt="" height="50px">
+                      <br>
+                      Vendido <br> {{ boleta.fecha_venta|formatear_fecha }}
+                    </td>
+                    <td style="text-align: center; padding-right: 20px;">
+                      <img src="{% static 'core\img\Despacho-600x600.jpg' %}" alt="" height="50px">
+                      <br>
+                      Despachado <br> {{ boleta.fecha_despacho|formatear_fecha }}
+                    </td>
+                    <td style="text-align: center;">
+                      <img src="{% static 'core\img\3143231.png' %}" alt="" height="50px">
+                      <br>
+                      Entregado <br> {{ boleta.fecha_entrega|formatear_fecha }}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+            <td>
+              <table class="table  tableinfo float-end" style="width: 70%; margin-top: 5px;">
+                <tr>
+                  <td>Precio sin IVA</td>
+                  <td><input type="text" class="form-control" name="precio_sin_iva" id="precio_sin_iva" value="{{ boleta.monto_sin_iva|formatear_dinero }}" readonly /></td>
+                </tr>
+                <tr>
+                  <td>Valor del IVA (19%)</td>
+                  <td><input type="text" class="form-control" name="valor_del_iva" id="valor_del_iva" value="{{ boleta.iva|formatear_dinero }}" readonly /></td>
+                </tr>
+                <tr>
+                  <td>Total a pagar</td>
+                  <td><input type="text" class="form-control" name="total_a_pagar" id="total_a_pagar" value="{{ boleta.total_a_pagar|formatear_dinero }}" readonly /></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  {% else %}
+
+    <h2>
+      No se puede mostrar la boleta
+    </h2>
+
+  {% endif %} 
+{% endblock content %}

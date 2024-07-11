@@ -1,0 +1,45 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    var mensajes = `{{ backend_messages }}`;
+    var icon = `{{ backend_message_type }}`;
+  
+    if (mensajes != '') {
+      Swal.fire({
+        title: 'Super Games te Informa',
+        html: mensajes,
+        icon: icon,
+        confirmButtonText: 'Aceptar',
+        background: 'rgb(33, 37, 41)', // Fondo oscuro
+        color: '#ffffff', // Color de texto claro
+        confirmButtonColor: '#3085d6', // Color del botón
+        customClass: {
+          popup: 'swal2-dark-popup', // Clase personalizada para el popup
+          title: 'swal2-dark-title', // Clase personalizada para el título
+          htmlContainer: 'swal2-dark-html', // Clase personalizada para el contenido HTML
+          confirmButton: 'swal2-dark-confirm' // Clase personalizada para el botón
+        }
+      });
+    }
+  });
+  </script>
+  
+  <style>
+  /* Estilos personalizados para modo oscuro */
+  .swal2-dark-popup {
+    background-color: rgb(33, 37, 41) !important;
+  }
+  
+  .swal2-dark-title {
+    color: #ffffff !important;
+  }
+  
+  .swal2-dark-html {
+    color: #dcdcdc !important;
+  }
+  
+  .swal2-dark-confirm {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+  }
+  </style>
+  

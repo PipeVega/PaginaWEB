@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Python: Django (Linux)",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/manage.py",
+        "args": ["runserver"],
+        "django": true,
+        "justMyCode": true,
+        "os": "linux"
+      },
+      {
+        "name": "Python: Django (Windows)",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}\\manage.py",
+        "args": ["runserver"],
+        "django": true,
+        "justMyCode": true,
+        "os": "windows"
+      }
+    ]
+  }
+  

@@ -1,0 +1,216 @@
+body {
+    padding: 10px;
+    margin: 0;
+    padding-bottom: 50px;
+    background-color:rgba(216, 216, 216, 0.61);
+}
+
+h5{
+    text-align: center;
+}
+
+
+h1 {
+    color: black;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.cuadro_login {
+    padding: 10px;
+    width: 500px;
+    margin: 0 auto;
+    height: 170px;
+
+    border-radius: 25px;
+
+}
+
+
+.boton_ingresar {
+    width: 200px;
+    margin: auto;
+}
+
+.index_disponible {
+    color: green;
+    font-size: 11px;
+    font-weight: bolder;
+}
+
+.index_precio {
+    color: blue;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.index_subscrito {
+    color: red;
+    font-size: 20px;
+}
+
+.index_stock {
+    color: green;
+    font-weight: bolder;
+}
+
+.ficha_foto {
+    height: 100%;
+    float: right;
+    border: 3px solid gray;
+}
+
+.ficha_titulo {
+    font-size: 40px;
+    font-weight: bolder;
+    border: 1px solid rgb(85, 85, 85);
+    padding: 30px;
+    width: 300px;
+}
+
+.ficha_disponible {
+    color: green;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.ficha_precio {
+    font-size: 40px;
+}
+
+.descripcion_ficha{
+    font-size: 20px;
+}
+
+.container{
+    text-align: center;
+}
+
+.user{
+    max-width: 200px;
+}
+
+
+.ficha_titulo {
+    color: red
+    
+}
+
+.ficha_precio {
+    color: blue
+}
+
+
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px; 
+    background-color: #f2f2f2; 
+  }
+
+  #boleta_tabla_estados {
+    float: right;
+}
+
+#boleta_tabla_estados td {
+    text-align: center;
+    font-weight: bold;
+    padding-right: 50px;
+}
+
+.logo{
+    width: 50px;
+}
+
+.entregado{
+    width: 70px;
+}
+
+.vendido{
+    width: 100px;
+}
+
+.despacho{
+    width: 80px;
+}
+
+.navbar-brand{
+    font-weight: bolder;
+}
+
+
+
+.table{
+     text-align: center;
+}
+
+.carro{
+    width: 25px;
+    height: 25px;
+}
+
+.ingreso_tienda{
+    text-align: center;
+}
+
+.cliente{
+    text-align: center;
+
+}
+
+.administrador{
+    text-align: center;
+    
+}
+
+.bienvenido{
+    text-align: center;
+    font-size: 30px;
+}
+
+.contenedor{
+    display: flex;
+    margin: 0 auto;
+    width: 100%;  
+}
+
+
+
+h3{
+    text-align: center;
+}
+
+.card-text{
+    text-align: center;
+}
+
+.error {
+    color: red;
+    font-style: italic;
+    font-weight: bolder;
+    text-align: left;
+}
+label{
+    font-weight: bolder;
+}
+
+.valor-iva {
+    font-weight: bold;
+  }
+
+.total-a-pagar{
+    font-weight: bold;
+}
+
+.precio-sin-iva{
+    font-weight: bold;
+}
+.table-hover .letra-boleta-anulada td {
+    color: red !important;
+    font-weight: bold !important;
+}
+

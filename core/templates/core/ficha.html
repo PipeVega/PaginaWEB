@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+  <div>
+    <h1>Ficha de Producto</h1>
+  </div>
+
+  <div class="container-lg">
+    <table class="table" style="border-radius: 10px; overflow: hidden; margin: auto;">
+      <form method="post" id="form">
+        {% csrf_token %}
+        <tr>
+          <td style="width: 40%; text-align: center;">
+            <img src="/media/{{ imagen }}" style="width: 90%; height: auto;"/>
+          </td>
+          <td class="col text-wrap overflow-hidden" style="border-bottom: none; vertical-align: top; text-align: left;">
+            <div>
+              <h3 style="margin-bottom: 20px">{{nombre}}</h3>
+              <div class="lead text-oferta fw-bold" style="margin-bottom: 20px">
+                {{ html_estado|safe }}
+              </div>
+              <div class="lead text-terciary-ficha" style="margin-bottom: 10px">
+                {{ html_stock|safe }}
+              </div>
+              <div>
+              {{ descripcion}}
+              </div>
+            </div>
+            <div class="lead text-danger">
+              <span class="sale-real-price fw-bold" style="font-size: x-large">
+                {{ html_precio|safe }}
+              </span>
+            </div>
+            <div style="margin-top: 10px">
+              <input type="hidden" id="accion">
+              <a href="{% url 'comprar_ahora' %}" class="btn btn-lg btn-primary"> Comprar Ahora </a>
+              <a href="{% url 'agregar_producto_al_carrito' id %}" class="btn btn-lg btn-primary"> Añadir al Carro </a>
+            </div>
+          </td>
+        </tr>
+      </form>
+    </table>
+  </div>
+{% endblock content %}
